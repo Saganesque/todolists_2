@@ -46,8 +46,8 @@ Once the seeds.rb file is created, populate the database using rake db:seed
 User.destroy_all
 
 User.create![
-{Carly Fiorina, 1954}
-{Donald Trump, 1946}
-{Ben Carson, 1951}
-{Hillary Clinton, 1947}
+{username: "Fiorina", password_digest: "1954"},
+{username: "Trump", password_digest: "1946"},
+{username: "Carson", password_digest: "1951"},
+{username: "Clinton", password_digest: "1947"}
 ]
