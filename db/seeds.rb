@@ -47,20 +47,15 @@ Profile.create! [
 
 User.all.each do |x|
 
-  a1= TodoList.create! ({list_name: "#{x.username}_tdl", list_due_date: Date.today})
+  a1= TodoList.create! ({list_name: "#{x.username}_tdl", list_due_date: Date.today.next_year})
   x.todo_lists << a1
-
-
   5.times do |aaaaa|
-
-
-   a2= TodoItem.create! ({due_date: Date.tomorrow, title: "item_#{aaaaa} based on #{x.username}", description: "something", completed: false})
-   a1.todo_items << a2
-   a1.todo_items
+  a2= TodoItem.create! ({due_date: Date.today.next_year, title: "item_#{aaaaa} based on #{x.username}", description: "something", completed: false})
+  a1.todo_items << a2
+  a1.todo_items
   end
 
-
-  end
+end
 
 
 
