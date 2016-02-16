@@ -8,25 +8,6 @@
 
 =begin
 
-Create a seeds.rb file that will clear the existing data from the model tables and load the database with
-
-The four users below with their birth years:
-
-                                          Carly Fiorina, 1954
-
-Donald Trump, 1946
-
-Ben Carson, 1951
-
-Hillary Clinton, 1947
-
-Usernames (e.g., their last names) and a password for each User
-
-                                                    A Profile for each User
-
-                                                                Exactly one TodoList per User that is due one year from the date the database is loaded
-
-                                                                (hint: Date.today provides today's date and 1.year can be used to define one year)
 
 Each TodoList contains five (5) TodoItems (there must be 20 total)
 
@@ -61,12 +42,29 @@ Profile.create! [
     {gender: "male", birth_year: "1951", first_name: "Ben", last_name: "Carson"},
     {gender: "female", birth_year: "1947", first_name: "Hillary", last_name: "Clinton"}
                 ]
-TodoList.create! [
-                     {list_name: "td1", list_due_date: "1-1-2001"},
-                     {list_name: "td2", list_due_date: "1-1-2002"},
-                     {list_name: "td3", list_due_date: "1-1-2003"},
-                     {list_name: "td4", list_due_date: "1-1-2004"}
-                 ]
+
+#tmp_tdl_array = Array.new(0)
+#tmp_tdi_array = Array.new(0)
+
+User.all.each do |x|
+  #tmp_tdl_array.push ({list_name: "#{x.username}_tdl", list_due_date: Date.today})
+ a1= TodoList.create! ({list_name: "#{x.username}_tdl", list_due_date: Date.today})
+ x.todo_lists << a1
+ aaaaa=1
+  while aaaaa < User.count
+  #tmp_tdi_array.push ({due_date: Date.tomorrow, title: "item_#{a} based on #{x.username}", description: "something", completed: false})
+   a2= TodoItem.create! ({due_date: Date.tomorrow, title: "item_#{aaaaa} based on #{x.username}", description: "something", completed: false})
+   a1.todo_items << a2
+p a1.todo_items
+   aaaaa+=1
+  end
+
+end
+
+#TodoList.create! tmp_tdl_array
+
+
+
 
 =begin
 it "must have Profiles set up for each user with the given data" do
