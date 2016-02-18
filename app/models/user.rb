@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
 =end
 
   def get_completed_count
+    self.todo_items.where(completed: true).count
+
 
   end
 
